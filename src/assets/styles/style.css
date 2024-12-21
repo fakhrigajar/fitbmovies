@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+* {
+  font-family: Manrope !important;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+
+.hero-logo {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  mask-image: url("../images/site-logo.svg");
+  -webkit-mask-image: url("../images/site-logo.svg");
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* SWIPER STYLES */
+.custom-pagination .swiper-pagination {
+  bottom: 40px !important;
+}
+.custom-pagination .swiper-pagination-bullet {
+  background-color: white;
+}
+.custom-pagination .swiper-button-disabled {
+  visibility: hidden;
+  border-color: transparent;
+}
+
+/* TAILWIND STYLES */
+
+/* ANT DESIGN STYLES */
+.ant-dropdown-menu {
+  background-color: #1f1f1f !important;
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: #262626 !important;
+}
+.ant-checkbox-inner {
+  border-color: #262626 !important;
+  background-color: transparent !important;
+}
+
+.ant-popover-inner,
+.ant-popover-arrow-content,
+.ant-popover-arrow:before {
+  background-color: #141414 !important;
+}
+
+.ant-popover-content {
+  max-width: 80vw;
+}
+@media screen and (min-width: 640px) {
+  .ant-popover-content {
+    max-width: 60vw;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .ant-popover-content {
+    max-width: 20vw;
+  }
+}
+
+/* CLERK STYLES */
+.cl-rootBox,
+.cl-signIn-root {
+  background-color: #141414;
+}
+
+.cl-cardBox,
+.cl-signIn-start,
+.cl-card {
+  background-color: #1a1a1a;
+}
+
+.cl-footer {
+  display: none;
+  background: #141414 !important;
+}
+
+.cl-headerTitle,
+.cl-formFieldLabel {
+  color: white;
+}
+
+.cl-formFieldAction {
+  color: #b3b3b3 !important;
+}
+
+.cl-otpCodeFieldInput {
+  color: #fff !important;
+}
+
+.cl-formFieldInput {
+  background-color: #141414 !important;
+  color: #fcfcfd !important;
+}
+.cl-main button {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  color: white !important;
+  border: #1a1a1a !important;
+  outline: #1a1a1a !important;
+}
