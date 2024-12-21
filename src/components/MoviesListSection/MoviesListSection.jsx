@@ -7,8 +7,6 @@ import LeftLinearIcon from "../../assets/icons/LeftLinearIcon";
 import RightLinearIcon from "../../assets/icons/RightLinearIcon";
 
 function MoviesListSection({ title, list, link }) {
-  console.log(link);
-
   return (
     <section className="px-10 py-10 flex flex-col gap-5 sm:gap-7 desktop:gap-10">
       <div className="flex items-center justify-between">
