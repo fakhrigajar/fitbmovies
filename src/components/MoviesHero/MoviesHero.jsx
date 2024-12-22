@@ -36,7 +36,7 @@ function MoviesHero() {
       <div className="relative w-full">
         <Swiper
           className="mySwiper flex w-full custom-pagination relative rounded-xl"
-          loop={true}
+          loop={popularMovies?.length > 2}
           navigation={{
             prevEl: ".swiper-custom-prev",
             nextEl: ".swiper-custom-next",
@@ -46,6 +46,8 @@ function MoviesHero() {
             disableOnInteraction: false,
             stopOnLastSlide: false,
           }}
+          slidesPerView={1}
+          slidesPerGroup={1}
           initialSlide={0}
           pagination={{
             clickable: true,

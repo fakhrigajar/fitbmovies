@@ -3,11 +3,6 @@
 * {
   font-family: Manrope !important;
 }
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 body {
   background-color: rgb(20, 20, 20);
@@ -26,6 +21,23 @@ body {
   -webkit-mask-size: contain;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+
+.error-icon {
+  width: 75px;
+  height: 75px;
+}
+@media screen and (min-width: 640px) {
+  .error-icon {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .error-icon {
+    width: 250px !important;
+    height: 250px !important;
+  }
 }
 
 /* SWIPER STYLES */
@@ -75,6 +87,13 @@ body {
   }
 }
 
+.skeleton-card .ant-skeleton-paragraph li:last-child {
+  display: none;
+}
+.skeleton-card .ant-skeleton-paragraph {
+  margin-block-start: 16px !important;
+}
+
 /* CLERK STYLES */
 .cl-rootBox,
 .cl-signIn-root {
@@ -116,4 +135,10 @@ body {
   color: white !important;
   border: #1a1a1a !important;
   outline: #1a1a1a !important;
+}
+
+.bottombar .ant-segmented-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
 }

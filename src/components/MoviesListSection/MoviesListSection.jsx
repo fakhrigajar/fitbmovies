@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import MovieCard from "../MovieCard/MovieCard";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import LeftLinearIcon from "../../assets/icons/LeftLinearIcon";
 import RightLinearIcon from "../../assets/icons/RightLinearIcon";
+import SkeletonCard from "../../skeletons/SkeletonCard/SkeletonCard";
 
 function MoviesListSection({ title, list, link }) {
+  const skeletonSlides = Array.from({ length: 4 }, (_, index) => (
+    <SwiperSlide key={`skeleton-${index}`}>
+      <SkeletonCard />
+    </SwiperSlide>
+  ));
+
   return (
     <section className="px-10 py-10 flex flex-col gap-5 sm:gap-7 desktop:gap-10">
       <div className="flex items-center justify-between">
@@ -37,16 +44,22 @@ function MoviesListSection({ title, list, link }) {
               spaceBetween: 20,
             },
             1024: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1200: {
               slidesPerView: 4,
               spaceBetween: 30,
             },
           }}
         >
-          {list?.map((listItem, i) => (
-            <SwiperSlide key={i}>
-              <MovieCard listItem={listItem} link={link} />
-            </SwiperSlide>
-          ))}
+          {list.length
+            ? list.map((listItem, i) => (
+                <SwiperSlide key={i}>
+                  <MovieCard listItem={listItem} link={link} />
+                </SwiperSlide>
+              ))
+            : skeletonSlides}
         </Swiper>
         <button className="absolute top-1/2 -translate-y-1/2 z-10 left-0 custom-button-prev cursor-pointer -ml-5 w-14 h-14 flex items-center justify-center bg-dark-10/20 backdrop-blur-md stroke-white text-gray-700 rounded-full shadow-md transition-all duration-200 ease-in-out focus:outline-none">
           <LeftLinearIcon />

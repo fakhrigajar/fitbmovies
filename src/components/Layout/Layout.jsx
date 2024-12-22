@@ -4,20 +4,36 @@ import Footer from "../Footer/Footer";
 import Routers from "../../routes/Routers";
 import { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import axios from "axios";
+import { baseUrl } from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
+import { setItemToCollection } from "../../features/collection/collectionSlice";
+import { setItemToWishlist } from "../../features/wishlist/wishlistSlice";
 
 function Layout() {
-  const [loaderActive, setLoaderActive] = useState(false);
   const location = useLocation();
+  const [loaderActive, setLoaderActive] = useState(false);
+  const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
+  const storedCollection = JSON.parse(localStorage.getItem("collection"));
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoaderActive(true);
     const timer = setTimeout(() => {
       setLoaderActive(false);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timer);
   }, [location.pathname]);
+  useEffect(() => {
+    if (storedCollection) {
+      dispatch(setItemToCollection(storedCollection));
+    }
+    if (storedWishlist) {
+      dispatch(setItemToWishlist(storedWishlist));
+    }
+  }, []);
 
   const formattedPath =
     location.pathname.replace("/", "").charAt(0).toUpperCase() +
@@ -27,9 +43,14 @@ function Layout() {
     <Fragment>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{formattedPath ? formattedPath : "Home"} - FITBMovies</title>
+        <title>
+          {/* {formattedPath !== ""
+            ? `${formattedPath} - FITBMovies`
+            : "Home - FITBMovies"} */}
+          FITBMovies
+        </title>
+        <meta name="description" content={"Explore movies on FITBMovies."} />
       </Helmet>
-
       <Header />
       {loaderActive && <Loader />}
       <Toaster
@@ -48,6 +69,7 @@ function Layout() {
       />
       <Routers />
       <Footer />
+      {/* <BottomBar /> */}
     </Fragment>
   );
 }

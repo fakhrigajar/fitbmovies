@@ -8,6 +8,7 @@ import { SignedIn, SignedOut, useClerk, useUser } from "@clerk/clerk-react";
 import BookmarkOutlineIcon from "../../assets/icons/BookmarkOutlineIcon";
 import WishOutlineIcon from "../../assets/icons/WishOutlineIcon";
 import LogoutIcon from "../../assets/icons/LogoutIcon";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [activeNav, setActiveNav] = useState("/");
@@ -15,6 +16,11 @@ function Header() {
   const [showHeader, setShowHeader] = useState(window.scrollY > 100);
   const { user } = useUser();
   const { signOut } = useClerk();
+  const collection = useSelector((state) => state.collection.value);
+  const wishlist = useSelector((state) => state.wishlist.value);
+  useEffect(() => {}, [collection, wishlist]);
+  const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  const storedCollection = JSON.parse(localStorage.getItem("collection")) || [];
 
   const items = [
     {
@@ -42,7 +48,12 @@ function Header() {
               <BookmarkOutlineIcon color="#999999" />
               <p className="text-white">Collections</p>
             </Flex>
-            <Badge count={11} overflowCount={10} showZero color="#262626" />
+            <Badge
+              count={storedCollection.length}
+              overflowCount={10}
+              showZero
+              color="#262626"
+            />
           </div>
         </Link>
       ),
@@ -54,9 +65,14 @@ function Header() {
           <div className="flex gap-2 justify-between py-2 items-center">
             <Flex align="center" gap={10}>
               <WishOutlineIcon color="#999999" />
-              <p className="text-white">Collections</p>
+              <p className="text-white">Wishlist</p>
             </Flex>
-            <Badge count={0} showZero color="#262626" />
+            <Badge
+              count={storedWishlist.length}
+              overflowCount={10}
+              showZero
+              color="#262626"
+            />
           </div>
         </Link>
       ),

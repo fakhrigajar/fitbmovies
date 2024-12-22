@@ -60,8 +60,6 @@ function FAQ() {
 
   const halfIndex = Math.ceil(faqs.length / 2);
   const leftFAQs = faqs.slice(0, halfIndex);
-  console.log(leftFAQs);
-
   const rightFAQs = faqs.slice(halfIndex);
 
   return (

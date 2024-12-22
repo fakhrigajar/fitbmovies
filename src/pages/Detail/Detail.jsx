@@ -60,8 +60,6 @@ function Detail() {
     getAllData();
   }, [id]);
 
-  console.log(reviews);
-
   return (
     <section>
       <div className="rounded-xl overflow-hidden px-10 py-10">

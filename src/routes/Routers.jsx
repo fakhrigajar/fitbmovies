@@ -23,6 +23,9 @@ function Routers() {
       <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<Error />} />
       <Route path="/popular-movies/:id" element={<Detail />} />
+      <Route path="/top-rated/:id" element={<Detail />} />
+      <Route path="/now-playing/:id" element={<Detail />} />
+      <Route path="/upcoming/:id" element={<Detail />} />
       <Route path="/recommendations/:id" element={<Detail />} />
     </Routes>
   );
