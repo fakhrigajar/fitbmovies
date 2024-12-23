@@ -11,6 +11,7 @@ import { baseUrl } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setItemToCollection } from "../../features/collection/collectionSlice";
 import { setItemToWishlist } from "../../features/wishlist/wishlistSlice";
+import BottomBar from "../BottomBar/BottomBar";
 
 function Layout() {
   const location = useLocation();
@@ -69,7 +70,7 @@ function Layout() {
       />
       <Routers />
       <Footer />
-      {/* <BottomBar /> */}
+      <BottomBar />
     </Fragment>
   );
 }

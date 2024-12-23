@@ -54,10 +54,6 @@ function Movies() {
       .then((res) => setTopRateds(res.data.results));
   }, []);
 
-  popularMovies.map((popularMovie, i) =>
-    console.log(i, popularMovie.backdrop_path)
-  );
-
   return (
     <main>
       <MoviesHero />

@@ -54,7 +54,7 @@ function AnimatedGridImage() {
   return (
     <div
       ref={ref}
-      className={`${styles.list} animated-grid-image !h-[500px]`}
+      className={`${styles.list} animated-grid-image !h-[500px]  sm:!h-[500px] desktop:!h-[450px]`}
       style={{ height: Math.max(...heights) }}
     >
       {transitions((style, item) => (

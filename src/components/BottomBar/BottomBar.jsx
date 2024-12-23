@@ -1,61 +1,75 @@
-import { Avatar, Segmented } from "antd";
-import React from "react";
-import PlusLinearIcon from "../../assets/icons/PlusLinearIcon";
-import { HomeFilled, SearchOutlined, UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import UserIcon from "../../assets/icons/UserIcon";
+import HomeIcon from "../../assets/icons/HomeIcon";
+import TVIcon from "../../assets/icons/TVIcon";
+import WishOutlineIcon from "../../assets/icons/WishOutlineIcon";
+import { Link, useLocation } from "react-router-dom";
 
 function BottomBar() {
+  const location = useLocation();
+  const [activeNav, setActiveNav] = useState(location.pathname);
+
+  useEffect(() => {
+    setActiveNav(location.pathname);
+  }, [location]);
+  const bottomNavigations = [
+    {
+      label: (
+        <div className="flex flex-col items-center gap-1">
+          <HomeIcon color={activeNav === "/" ? "red" : "white"} />
+          <div className="text-xs sm:text-base">Home</div>
+        </div>
+      ),
+      value: "/",
+    },
+    {
+      label: (
+        <div className="flex flex-col items-center gap-1">
+          <TVIcon color={activeNav === "/movies" ? "red" : "white"} />
+          <div className="text-xs sm:text-base">Movies</div>
+        </div>
+      ),
+      value: "/movies",
+    },
+    {
+      label: (
+        <div className="flex flex-col items-center gap-1">
+          <WishOutlineIcon
+            color={activeNav === "/wishlist" ? "red" : "white"}
+          />
+          <div className="text-xs sm:text-base">Wishlist</div>
+        </div>
+      ),
+      value: "/wishlist",
+    },
+    {
+      label: (
+        <div className="flex flex-col items-center gap-1">
+          <UserIcon color={activeNav === "/profile" ? "red" : "white"} />
+          <div className="text-xs sm:text-base">Profile</div>
+        </div>
+      ),
+      value: "/profile",
+    },
+  ];
+
   return (
-    <div className="fixed left-0 right-0 bottom-0">
-      <Segmented
-        className="w-full bg-dark-10 bottombar sm:px-10"
-        options={[
-          {
-            label: (
-              <a href="/">
-                <div className="p-2">
-                  <HomeFilled className="text-2xl" />
-                  <div>User 1</div>
-                </div>
-              </a>
-            ),
-            value: "tab1",
-          },
-          {
-            label: (
-              <div>
-                <div className="p-2">
-                  <SearchOutlined className="text-2xl" />
-                  <div>Search</div>
-                </div>
-              </div>
-            ),
-            value: "tab2",
-          },
-          {
-            label: (
-              <div>
-                <div className="p-2">
-                  <UserOutlined className="text-2xl" />
-                  <div>Profile</div>
-                </div>
-              </div>
-            ),
-            value: "tab3",
-          },
-          {
-            label: (
-              <div>
-                <div className="p-2">
-                  <UserOutlined className="text-2xl" />
-                  <div>Profile</div>
-                </div>
-              </div>
-            ),
-            value: "tab4",
-          },
-        ]}
-      />
+    <div className="fixed left-0 right-0 bottom-0 z-50 desktop:hidden">
+      <ul className="flex justify-around bg-dark-10 px-5 pt-2 pb-2 rounded-tl-2xl rounded-tr-2xl">
+        {bottomNavigations.map((bottomNavigation, i) => (
+          <li
+            onClick={() => setActiveNav(bottomNavigation.value)}
+            className={
+              activeNav === bottomNavigation.value
+                ? "text-primary-45"
+                : "text-white"
+            }
+            key={i}
+          >
+            <Link to={bottomNavigation.value}>{bottomNavigation.label}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

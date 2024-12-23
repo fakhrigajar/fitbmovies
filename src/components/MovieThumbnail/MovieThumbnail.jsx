@@ -1,10 +1,48 @@
-import { Button, Flex, Tooltip } from "antd";
-import React from "react";
+import { Button, Flex, Modal, Tooltip } from "antd";
+import React, { useEffect, useState } from "react";
 import PlayOutlinedIcon from "../../assets/icons/PlayOutlinedIcon";
 import PlusLinearIcon from "../../assets/icons/PlusLinearIcon";
 import LikeLinearIcon from "../../assets/icons/LikeLinearIcon";
+import axios from "axios";
+import { baseUrl } from "../../constants";
+const { confirm } = Modal;
 
 function MovieThumbnail({ movie, i }) {
+  const videosUrl = `movie/${movie.id}/videos?language=en-US`;
+
+  const [trailer, setTrailer] = useState();
+  // useEffect(() => {
+  //   axios
+  //     .get(`${baseUrl}/${videosUrl}`, {
+  //       headers: {
+  //         Authorization:
+  //           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
+  //         Accept: "application/json",
+  //       },
+  //     })
+  //     .then((res) => setTrailer(res.data.results[0]));
+  // }, []);
+
+  // const playVideoOnSubmit = () => {
+  //   confirm({
+  //     content: (
+  //       <div>
+  //         <iframe
+  //           src={`https://www.youtube.com/embed/${trailer?.key}`}
+  //           width={"100%"}
+  //           title="video"
+  //         ></iframe>
+  //       </div>
+  //     ),
+  //     onOk() {
+  //       console.log("OK");
+  //     },
+  //     onCancel() {
+  //       console.log("Cancel");
+  //     },
+  //   });
+  // };
+
   return (
     <div
       className="h-[468px] sm:h-[709px] desktop:h-[835px] w-full bg-no-repeat bg-cover bg-center relative rounded-xl overflow-hidden"
@@ -33,7 +71,10 @@ function MovieThumbnail({ movie, i }) {
             </p>
           </Flex>
           <Flex className="flex-col sm:flex-row gap-3 w-full items-center justify-center">
-            <Button className="rounded-lg w-full sm:w-fit px-6 py-6 h-14 font-semibold text-lg bg-primary-45 hover:!bg-primary-55 text-white border-transparent hover:!border-transparent hover:!text-white">
+            <Button
+              // onClick={playVideoOnSubmit}
+              className="rounded-lg w-full sm:w-fit px-6 py-6 h-14 font-semibold text-lg bg-primary-45 hover:!bg-primary-55 text-white border-transparent hover:!border-transparent hover:!text-white"
+            >
               <PlayOutlinedIcon color={"#fff"} />
               Play Now
             </Button>

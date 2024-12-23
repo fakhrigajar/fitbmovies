@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import siteLogo from "../../assets/images/site-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Badge, Button, Dropdown, Flex } from "antd";
 import { Sling as Hamburger } from "hamburger-react";
@@ -11,7 +11,8 @@ import LogoutIcon from "../../assets/icons/LogoutIcon";
 import { useSelector } from "react-redux";
 
 function Header() {
-  const [activeNav, setActiveNav] = useState("/");
+  const location = useLocation();
+  const [activeNav, setActiveNav] = useState(location.pathname);
   const [showBurger, setShowBurger] = useState(false);
   const [showHeader, setShowHeader] = useState(window.scrollY > 100);
   const { user } = useUser();
@@ -106,6 +107,10 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    setActiveNav(location.pathname);
+  }, [location]);
 
   const navigations = [
     {
