@@ -2,7 +2,7 @@ import React from "react";
 
 function Loader() {
   return (
-    <div className="loader fixed top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 flex flex-col gap-10 items-center justify-center duration-300 z-50 bg-dark-10">
+    <div className="loader fixed top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 flex flex-col gap-10 items-center justify-center duration-300 z-[120] bg-dark-10">
       <svg
         width="60"
         height="60"
