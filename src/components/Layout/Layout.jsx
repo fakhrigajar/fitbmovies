@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import Routers from "../../routes/Routers";
 import { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { baseUrl } from "../../constants";
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setItemToCollection } from "../../features/collection/collectionSlice";
 import { setItemToWishlist } from "../../features/wishlist/wishlistSlice";
 import BottomBar from "../BottomBar/BottomBar";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 function Layout() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function Layout() {
   const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
   const storedCollection = JSON.parse(localStorage.getItem("collection"));
   const dispatch = useDispatch();
+  const video = useSelector((state) => state.video.value);
 
   useEffect(() => {
     setLoaderActive(true);
@@ -68,6 +70,7 @@ function Layout() {
         position="top-center"
         reverseOrder={true}
       />
+      <VideoPlayer />
       <Routers />
       <Footer />
       <BottomBar />

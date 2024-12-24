@@ -133,14 +133,11 @@ function Header() {
 
   return (
     <header
-      className={`bg-dark-08 text-gray-99 w-full sticky top-0 z-50 duration-300 ${
+      className={`bg-dark-08 text-gray-99 w-full sticky top-0 z-[100] duration-300 ${
         showHeader ? "bg-dark-08 shadow-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto px-10 flex justify-between items-center h-16">
-        <div className="block desktop:hidden z-10">
-          <Hamburger toggled={showBurger} toggle={setShowBurger} />
-        </div>
         <div className="text-2xl font-bold">
           <Link to="/" className="text-primary-50">
             <Flex align="center" gap={5}>
@@ -178,7 +175,7 @@ function Header() {
         {user ? (
           <SignedIn>
             <Dropdown
-              className="bg-dark-12 cursor-pointer p-2 rounded-xl"
+              className="bg-dark-12 cursor-pointer p-2 rounded-xl hidden desktop:flex"
               placement="bottomRight"
               menu={{
                 items,
@@ -211,6 +208,10 @@ function Header() {
             </Flex>
           </SignedOut>
         )}
+
+        <div className="block desktop:hidden z-101">
+          <Hamburger toggled={showBurger} toggle={setShowBurger} />
+        </div>
       </div>
     </header>
   );

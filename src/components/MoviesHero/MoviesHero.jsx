@@ -8,10 +8,14 @@ import axios from "axios";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 function MoviesHero() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [videoActive, setVideoActive] = useState(false);
+  const [videoID, setVideoID] = useState(null);
 
   const popularMoviesUrl =
     "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
@@ -57,7 +61,12 @@ function MoviesHero() {
         >
           {popularMovies?.map((movie, i) => (
             <SwiperSlide key={i}>
-              <MovieThumbnail movie={movie} i={i} />
+              <MovieThumbnail
+                movie={movie}
+                i={i}
+                setVideoID={setVideoID}
+                setVideoActive={setVideoActive}
+              />
             </SwiperSlide>
           ))}
 
