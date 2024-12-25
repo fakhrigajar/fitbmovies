@@ -1,14 +1,13 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Routers from "../../routes/Routers";
 import { Toaster } from "react-hot-toast";
-import Loader from "../Loader/Loader";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { baseUrl } from "../../constants";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setItemToCollection } from "../../features/collection/collectionSlice";
 import { setItemToWishlist } from "../../features/wishlist/wishlistSlice";
 import BottomBar from "../BottomBar/BottomBar";
@@ -16,19 +15,10 @@ import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 function Layout() {
   const location = useLocation();
-  const [loaderActive, setLoaderActive] = useState(false);
   const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
   const storedCollection = JSON.parse(localStorage.getItem("collection"));
   const dispatch = useDispatch();
-  const video = useSelector((state) => state.video.value);
 
-  useEffect(() => {
-    setLoaderActive(true);
-    const timer = setTimeout(() => {
-      setLoaderActive(false);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
   useEffect(() => {
     if (storedCollection) {
       dispatch(setItemToCollection(storedCollection));
@@ -55,7 +45,7 @@ function Layout() {
         <meta name="description" content={"Explore movies on FITBMovies."} />
       </Helmet>
       <Header />
-      {loaderActive && <Loader />}
+
       <Toaster
         toastOptions={{
           duration: 2000,

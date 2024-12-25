@@ -83,7 +83,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="px-10 pb-[50px] pt-[100px] bg-dark-06 flex flex-col gap-[100px] overflow-hidden">
+    <footer className="px-5 sm:px-10 pb-[50px] pt-[100px] bg-dark-06 flex flex-col gap-[100px] overflow-hidden">
       <div
         className="grid gap-[30px]"
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))" }}

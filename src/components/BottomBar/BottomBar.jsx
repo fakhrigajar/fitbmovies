@@ -16,7 +16,9 @@ function BottomBar() {
     {
       label: (
         <div className="flex flex-col items-center gap-1">
-          <HomeIcon color={activeNav === "/" ? "red" : "white"} />
+          <div className="w-7 h-7 flex justify-center items-center">
+            <HomeIcon color={activeNav === "/" ? "red" : "white"} />
+          </div>
           <div className="text-xs sm:text-base">Home</div>
         </div>
       ),
@@ -25,7 +27,9 @@ function BottomBar() {
     {
       label: (
         <div className="flex flex-col items-center gap-1">
-          <TVIcon color={activeNav === "/movies" ? "red" : "white"} />
+          <div className="w-7 h-7 flex justify-center items-center">
+            <TVIcon color={activeNav === "/movies" ? "red" : "white"} />
+          </div>
           <div className="text-xs sm:text-base">Movies</div>
         </div>
       ),
@@ -34,9 +38,11 @@ function BottomBar() {
     {
       label: (
         <div className="flex flex-col items-center gap-1">
-          <WishOutlineIcon
-            color={activeNav === "/wishlist" ? "red" : "white"}
-          />
+          <div className="w-7 h-7 flex justify-center items-center">
+            <WishOutlineIcon
+              color={activeNav === "/wishlist" ? "red" : "white"}
+            />
+          </div>
           <div className="text-xs sm:text-base">Wishlist</div>
         </div>
       ),
@@ -45,7 +51,9 @@ function BottomBar() {
     {
       label: (
         <div className="flex flex-col items-center gap-1">
-          <UserIcon color={activeNav === "/profile" ? "red" : "white"} />
+          <div className="w-7 h-7 flex justify-center items-center">
+            <UserIcon color={activeNav === "/profile" ? "red" : "white"} />
+          </div>
           <div className="text-xs sm:text-base">Profile</div>
         </div>
       ),
@@ -54,8 +62,11 @@ function BottomBar() {
   ];
 
   return (
-    <div className="fixed left-0 right-0 bottom-0 z-50 desktop:hidden">
-      <ul className="flex justify-around bg-dark-10 px-5 pt-2 pb-2 rounded-tl-2xl rounded-tr-2xl">
+    <div
+      className="fixed left-0 right-0 bottom-0 z-50 desktop:hidden bg-dark-10 rounded-tl-2xl rounded-tr-2xl"
+      style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+    >
+      <ul className="flex justify-around px-5 pt-3 pb-2">
         {bottomNavigations.map((bottomNavigation, i) => (
           <li
             onClick={() => setActiveNav(bottomNavigation.value)}

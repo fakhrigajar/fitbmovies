@@ -52,8 +52,6 @@ body {
   border-color: transparent;
 }
 
-/* TAILWIND STYLES */
-
 /* ANT DESIGN STYLES */
 .ant-dropdown-menu {
   background-color: #1f1f1f !important;
@@ -92,6 +90,18 @@ body {
 }
 .skeleton-card .ant-skeleton-paragraph {
   margin-block-start: 16px !important;
+}
+
+.ant-input:focus {
+  box-shadow: 0 0 0 2px rgba(76, 76, 76, 0.1);
+}
+
+.ant-input-status-error {
+  background: rgb(20, 20, 20) !important;
+}
+.ant-input-status-error:hover,
+.ant-input-status-error:focus {
+  border-color: #ff4d4f !important;
 }
 
 /* CLERK STYLES */

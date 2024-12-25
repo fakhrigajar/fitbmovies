@@ -6,6 +6,9 @@ export const StyledSection = styled.section({
   display: "flex",
   flexDirection: "column",
   gap: 20,
+  "@media (max-width: 480px)": {
+    margin: "0 20px",
+  },
 });
 
 export const StyledDarkSurface = styled.div((props) => ({

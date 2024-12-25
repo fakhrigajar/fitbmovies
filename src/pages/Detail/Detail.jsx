@@ -62,7 +62,7 @@ function Detail() {
 
   return (
     <section>
-      <div className="rounded-xl overflow-hidden px-10 py-10">
+      <div className="rounded-xl overflow-hidden px-5 sm:px-10 py-10">
         <MovieThumbnail movie={detail} />
       </div>
       <MovieDetails

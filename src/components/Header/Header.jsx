@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import siteLogo from "../../assets/images/site-logo.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Badge, Button, Dropdown, Flex } from "antd";
+import { Badge, Button, Dropdown, Flex, Skeleton } from "antd";
 import { Sling as Hamburger } from "hamburger-react";
 import { SignedIn, SignedOut, useClerk, useUser } from "@clerk/clerk-react";
 import BookmarkOutlineIcon from "../../assets/icons/BookmarkOutlineIcon";
@@ -14,8 +14,7 @@ function Header() {
   const location = useLocation();
   const [activeNav, setActiveNav] = useState(location.pathname);
   const [showBurger, setShowBurger] = useState(false);
-  const [showHeader, setShowHeader] = useState(window.scrollY > 100);
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const { signOut } = useClerk();
   const collection = useSelector((state) => state.collection.value);
   const wishlist = useSelector((state) => state.wishlist.value);
@@ -97,18 +96,6 @@ function Header() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowHeader(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
     setActiveNav(location.pathname);
   }, [location]);
 
@@ -133,11 +120,9 @@ function Header() {
 
   return (
     <header
-      className={`bg-dark-08 text-gray-99 w-full sticky top-0 z-[100] duration-300 ${
-        showHeader ? "bg-dark-08 shadow-md" : "bg-transparent"
-      }`}
+      className={`bg-dark-08 text-gray-99 w-full sticky top-0 z-[100] duration-300`}
     >
-      <div className="mx-auto px-10 flex justify-between items-center h-16">
+      <div className="mx-auto px-5 sm:px-10 flex justify-between items-center h-16">
         <div className="text-2xl font-bold">
           <Link to="/" className="text-primary-50">
             <Flex align="center" gap={5}>
@@ -172,43 +157,49 @@ function Header() {
             </Link>
           ))}
         </nav>
-        {user ? (
-          <SignedIn>
-            <Dropdown
-              className="bg-dark-12 cursor-pointer p-2 rounded-xl hidden desktop:flex"
-              placement="bottomRight"
-              menu={{
-                items,
-              }}
-              trigger={["click"]}
-            >
-              <Flex align="center" gap={5} onClick={(e) => e.preventDefault()}>
-                <img
-                  className="w-5 h-5 rounded-full"
-                  src={user?.imageUrl}
-                  alt={user?.fullName}
-                />
-                <h1 className="text-white">{user?.username}</h1>
-              </Flex>
-            </Dropdown>
-          </SignedIn>
-        ) : (
-          <SignedOut>
-            <Flex className="hidden desktop:flex" align="center">
-              <Link to="/register">
-                <Button className="px-4 py-2 bg-transparent text-white border-0 rounded hover:!bg-transparent hover:!text-primary-50 transition duration-300">
-                  Register
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button className="px-4 py-2 bg-primary-45 text-white font-semibold border border-primary-50 rounded hover:!bg-transparent hover:!border-primary-50 hover:!text-primary-50 transition duration-300">
-                  Login
-                </Button>
-              </Link>
-            </Flex>
-          </SignedOut>
-        )}
 
+        <SignedIn>
+          <Dropdown
+            className="bg-dark-12 cursor-pointer p-2 rounded-xl hidden desktop:flex"
+            placement="bottomRight"
+            menu={{
+              items,
+            }}
+            trigger={["click"]}
+          >
+            <Flex align="center" gap={5} onClick={(e) => e.preventDefault()}>
+              <img
+                className="w-5 h-5 rounded-full"
+                src={user?.imageUrl}
+                alt={user?.fullName}
+              />
+              <h1 className="text-white">{user?.username}</h1>
+            </Flex>
+          </Dropdown>
+        </SignedIn>
+        <SignedOut>
+          <Flex className="hidden desktop:flex" align="center">
+            <Link to="/register">
+              <Button className="px-4 py-2 bg-transparent text-white border-0 rounded hover:!bg-transparent hover:!text-primary-50 transition duration-300">
+                Register
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button className="px-4 py-2 bg-primary-45 text-white font-semibold border border-primary-50 rounded hover:!bg-transparent hover:!border-primary-50 hover:!text-primary-50 transition duration-300">
+                Login
+              </Button>
+            </Link>
+          </Flex>
+        </SignedOut>
+        {!isLoaded && (
+          <div className="hidden desktop:block">
+            <Skeleton.Button
+              size="large"
+              style={{ backgroundColor: "rgb(31,31,31)", borderRadius: 12 }}
+              active
+            />
+          </div>
+        )}
         <div className="block desktop:hidden z-101">
           <Hamburger toggled={showBurger} toggle={setShowBurger} />
         </div>
