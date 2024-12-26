@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserIcon from "../../assets/icons/UserIcon";
 import HomeIcon from "../../assets/icons/HomeIcon";
 import TVIcon from "../../assets/icons/TVIcon";
-import WishOutlineIcon from "../../assets/icons/WishOutlineIcon";
 import { Link, useLocation } from "react-router-dom";
 import DiscoveryIcon from "../../assets/icons/DiscoveryIcon";
 

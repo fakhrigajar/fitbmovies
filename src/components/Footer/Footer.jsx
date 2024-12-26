@@ -75,9 +75,9 @@ function Footer() {
     {
       title: "Connect With us",
       socials: [
-        { value: "", icon: <FacebookIcon /> },
-        { value: "", icon: <InstagramIcon /> },
-        { value: "", icon: <TelegramIcon /> },
+        { value: "https://www.facebook.com/", icon: <FacebookIcon /> },
+        { value: "https://www.instagram.com/", icon: <InstagramIcon /> },
+        { value: "https://web.telegram.org/", icon: <TelegramIcon /> },
       ],
     },
   ];
@@ -108,7 +108,7 @@ function Footer() {
               navigation.socials && (
                 <Flex gap={14}>
                   {navigation.socials?.map((navigationSocial, i) => (
-                    <Link to={navigationSocial.value} key={i}>
+                    <Link target="_blank" to={navigationSocial.value} key={i}>
                       <StyledDarkSurface
                         width={56}
                         height={56}
@@ -125,7 +125,7 @@ function Footer() {
         ))}
       </div>
       <div className="text-center pt-6 border-t border-t-dark-15">
-        <p className="text-gray-60">@2023 streamvib, All Rights Reserved</p>
+        <p className="text-gray-60">@2023 FITBMovies, All Rights Reserved</p>
       </div>
     </footer>
   );

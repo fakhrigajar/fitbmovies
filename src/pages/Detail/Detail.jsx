@@ -4,6 +4,7 @@ import MovieThumbnail from "../../components/MovieThumbnail/MovieThumbnail";
 import axios from "axios";
 import MoviesListSection from "../../components/MoviesListSection/MoviesListSection";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
+import { StyledSection } from "../../assets/styles/styled.components";
 
 function Detail() {
   const { id } = useParams();
@@ -61,8 +62,8 @@ function Detail() {
   }, [id]);
 
   return (
-    <section>
-      <div className="rounded-xl overflow-hidden px-5 sm:px-10 py-10">
+    <StyledSection className="!py-5">
+      <div className="rounded-xl overflow-hidden px-5">
         <MovieThumbnail movie={detail} />
       </div>
       <MovieDetails
@@ -71,12 +72,14 @@ function Detail() {
         reviews={reviews}
         detail={detail}
       />
-      <MoviesListSection
-        title="Recommendations"
-        link="recommendations"
-        list={recommendations}
-      />
-    </section>
+      {recommendations.length > 0 && (
+        <MoviesListSection
+          title="Recommendations"
+          link="recommendations"
+          list={recommendations}
+        />
+      )}
+    </StyledSection>
   );
 }
 

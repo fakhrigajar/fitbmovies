@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import StarIcon from "../../assets/icons/StarIcon";
-import EyeIcon from "../../assets/icons/EyeIcon";
 import PlusLinearIcon from "../../assets/icons/PlusLinearIcon";
 import LikeLinearIcon from "../../assets/icons/LikeLinearIcon";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +21,6 @@ function MovieCard({ listItem }) {
   const wishlist = useSelector((state) => state.wishlist.value);
   const collection = useSelector((state) => state.collection.value);
   const [imageIsValid, setImageIsValid] = useState(false);
-  const location = useLocation();
 
   const dispatch = useDispatch();
 
@@ -34,11 +32,6 @@ function MovieCard({ listItem }) {
       .length
   );
   const navigate = useNavigate();
-  const formattedPopularity =
-    listItem?.popularity >= 1000
-      ? (Number(listItem?.popularity) / 1000).toFixed(1).replace(/\.0$/, "") +
-        "k"
-      : Number(listItem?.popularity).toFixed(0);
 
   const formattedVoteAverage = Number(listItem?.vote_average).toFixed(1);
 
@@ -131,52 +124,59 @@ function MovieCard({ listItem }) {
     }
   }, [imageUrl]);
 
-  console.log(imageIsValid);
-
   return (
-    <Link to={`/explore/${listItem.id}`}>
-      <div className="bg-dark-10 rounded-xl border border-dark-15 p-4 flex flex-col gap-4 group relative overflow-hidden">
-        <div className="relative h-56 sm:h-64 desktop:h-[328px]">
-          <img
-            className="w-full h-full object-cover rounded-xl"
-            src={
-              imageIsValid
-                ? imageUrl
-                : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
-            }
-            alt={listItem?.title + " Thumbnail" || "Movie Thumbnail"}
-          />
-          <div className="absolute right-3 top-3 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Button
-              onClick={() => addToCollection(listItem)}
-              className={`w-12 h-12 border rounded-full flex items-center justify-center !stroke-white duration-300 ${
-                isInCollection
-                  ? "bg-blue-600 text-white border-blue-800 hover:!bg-blue-500 hover:!border-blue-500"
-                  : "bg-dark-06 border-dark-15 hover:!bg-dark-10 hover:!border-dark-30"
-              }`}
-            >
-              <PlusLinearIcon />
-            </Button>
-            <Button
-              onClick={() => addToWishlist(listItem)}
-              className={`w-12 h-12 border rounded-full flex items-center justify-center !stroke-white duration-300 ${
-                isInWishlist
-                  ? "bg-primary-45 text-white border-primary-60 hover:!bg-primary-60 hover:!border-primary-60"
-                  : "bg-dark-06 border-dark-15 hover:!bg-dark-10 hover:!border-dark-30"
-              }`}
-            >
-              <LikeLinearIcon />
-            </Button>
-          </div>
-        </div>
-        <div className="absolute top-0 left-0 flex gap-2 justify-end">
-          <div className="flex items-center gap-1 px-3 py-1.5 rounded-l-none bg-dark-10 rounded-full border-dark-15">
-            <StarIcon color={"#e30000"} />
-            <p className="text-gray-60 tex">{formattedVoteAverage}</p>
-          </div>
+    <div
+      onClick={() => {
+        navigate(`/explore/${listItem?.id}`);
+      }}
+      className="bg-dark-10 rounded-xl border border-dark-15 p-4 flex flex-col gap-4 group relative overflow-hidden"
+    >
+      <div className="relative h-56 sm:h-64 desktop:h-[328px]">
+        <img
+          className="w-full h-full object-cover rounded-xl"
+          src={
+            imageIsValid
+              ? imageUrl
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+          }
+          alt={listItem?.title + " Thumbnail" || "Movie Thumbnail"}
+        />
+        <div className="absolute right-3 top-3 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              addToCollection(listItem);
+            }}
+            className={`w-12 h-12 border rounded-full flex items-center justify-center !stroke-white duration-300 ${
+              isInCollection
+                ? "bg-blue-600 text-white border-blue-800 hover:!bg-blue-500 hover:!border-blue-500"
+                : "bg-dark-06 border-dark-15 hover:!bg-dark-10 hover:!border-dark-30"
+            }`}
+          >
+            <PlusLinearIcon />
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              addToWishlist(listItem);
+            }}
+            className={`w-12 h-12 border rounded-full flex items-center justify-center !stroke-white duration-300 ${
+              isInWishlist
+                ? "bg-primary-45 text-white border-primary-60 hover:!bg-primary-60 hover:!border-primary-60"
+                : "bg-dark-06 border-dark-15 hover:!bg-dark-10 hover:!border-dark-30"
+            }`}
+          >
+            <LikeLinearIcon />
+          </Button>
         </div>
       </div>
-    </Link>
+      <div className="absolute top-0 left-0 flex gap-2 justify-end">
+        <div className="flex items-center gap-1 px-3 py-1.5 rounded-l-none bg-dark-10 rounded-full border-dark-15">
+          <StarIcon color={"#e30000"} />
+          <p className="text-gray-60 tex">{formattedVoteAverage}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 

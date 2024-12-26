@@ -44,13 +44,15 @@ function MovieDetails({ casts, reviews, detail }) {
   }, []);
 
   return (
-    <section className="grid desktop:grid-cols-[1fr_400px] gap-5 px-5 sm:px-10">
+    <section className="grid desktop:grid-cols-[1fr_400px] gap-5 px-5">
       <Flex vertical gap={20}>
         <DarkCard>
           {Object.keys(detail).length !== 0 ? (
             <Fragment>
               <h1 className="text-sm sm:text-base">Description</h1>
-              <p className="text-xs sm:text-base">{detail?.overview}</p>
+              <p className="text-xs sm:text-base">
+                {detail?.overview ? detail.overview : "-"}
+              </p>
             </Fragment>
           ) : (
             <Skeleton active />
@@ -60,26 +62,29 @@ function MovieDetails({ casts, reviews, detail }) {
           {Object.keys(detail).length !== 0 ? (
             <Fragment>
               <h1 className="text-sm sm:text-base">Cast</h1>
-              <Avatar.Group
-                size="large"
-                max={{
-                  count: maxCount,
-                  style: {
-                    color: "#999999",
-                    backgroundColor: "#141414",
-                    borderColor: "#262626",
-                  },
-                }}
-              >
-                {casts &&
-                  casts.map((cast, i) => (
+              {casts.length ? (
+                <Avatar.Group
+                  size="large"
+                  max={{
+                    count: maxCount,
+                    style: {
+                      color: "#999999",
+                      backgroundColor: "#141414",
+                      borderColor: "#262626",
+                    },
+                  }}
+                >
+                  {casts.map((cast, i) => (
                     <Avatar
                       key={i}
                       src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                       alt={cast.original_name + " Logo"}
                     />
                   ))}
-              </Avatar.Group>
+                </Avatar.Group>
+              ) : (
+                "-"
+              )}
             </Fragment>
           ) : (
             <Skeleton active />

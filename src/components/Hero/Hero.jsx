@@ -1,5 +1,4 @@
 import React from "react";
-import heroImage from "../../assets/images/hero-image.png";
 import { Button, Flex } from "antd";
 import PlayOutlinedIcon from "../../assets/icons/PlayOutlinedIcon";
 import AnimatedGridImage from "../AnimatedGridImage/AnimatedGridImage";

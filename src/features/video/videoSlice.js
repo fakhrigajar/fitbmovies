@@ -12,8 +12,6 @@ export const videoSlice = createSlice({
   initialState,
   reducers: {
     setItemToVideo: (state, action) => {
-      console.log(action.payload);
-
       state.value = action.payload;
     },
   },

@@ -1,13 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { StyledSection } from "../../assets/styles/styled.components";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { Button, Input, Pagination } from "antd";
 import { baseUrl } from "../../constants";
 import SkeletonCard from "../../skeletons/SkeletonCard/SkeletonCard";
 import Loader from "../../components/Loader/Loader";
-import { SearchOutlined } from "@ant-design/icons";
 
 function Explore() {
   const [pageCount, setPageCount] = useState(1);
@@ -18,10 +16,6 @@ function Explore() {
     totalPages: 0,
     totalCount: 0,
   });
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const searchValue = searchParams.get("search");
-
   const headers = {
     Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E`,
     Accept: "application/json",

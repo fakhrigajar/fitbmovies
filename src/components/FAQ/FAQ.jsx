@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import { StyledSection } from "../../assets/styles/styled.components";
-import { Flex } from "antd";
 import FAQAccordion from "../FAQAccordion/FAQAccordion";
 
 function FAQ() {
@@ -67,7 +66,7 @@ function FAQ() {
       <SectionHeader
         title={"Frequently Asked Questions"}
         description={
-          "Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about StreamVibe."
+          "Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about FITBMovies."
         }
       />
       <div className={`grid sm:grid-cols-2 sm:gap-10`}>

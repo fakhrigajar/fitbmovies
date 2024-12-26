@@ -18,37 +18,37 @@ function Services() {
       title: "Smartphones",
       icon: serviceIcon1,
       description:
-        "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+        "FITBMovies is fully optimized for Android and iOS smartphones. Download the app from Google Play Store or the Apple App Store to enjoy seamless streaming on your mobile device.",
     },
     {
       title: "Tablet",
       icon: serviceIcon2,
       description:
-        "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+        "Enjoy FITBMovies on your tablet. Our app is available for both Android and iOS tablets, providing an immersive streaming experience on larger screens. Download from Google Play or the Apple App Store.",
     },
     {
       title: "Smart TV",
       icon: serviceIcon3,
       description:
-        "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+        "Watch your favorite movies and shows on the big screen with FITBMovies, optimized for smart TVs. Download the app on your TV’s app store for a smooth viewing experience.",
     },
     {
       title: "Laptops",
       icon: serviceIcon4,
       description:
-        "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+        "FITBMovies offers a great streaming experience on laptops. Access all your content directly through the web or by downloading the app for Windows and macOS from our website.",
     },
     {
       title: "Gaming Consoles",
       icon: serviceIcon5,
       description:
-        "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+        "Experience FITBMovies on your gaming console. Whether you're on PlayStation, Xbox, or other compatible devices, enjoy uninterrupted streaming of your favorite shows and movies.",
     },
     {
       title: "VR Headsets",
       icon: serviceIcon6,
       description:
-        "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+        "Take your movie watching to the next level with FITBMovies on VR headsets. Dive into a fully immersive experience with optimized VR streaming, available through our app.",
     },
   ];
 
@@ -57,7 +57,7 @@ function Services() {
       <SectionHeader
         title={"We Provide you streaming experience across various devices."}
         description={
-          "With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
+          "With FITBMovies, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
         }
       />
       <div className="grid desktop:grid-cols-3 sm:grid-cols-2 gap-[30px]">

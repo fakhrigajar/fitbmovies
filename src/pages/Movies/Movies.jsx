@@ -3,6 +3,7 @@ import MoviesHero from "../../components/MoviesHero/MoviesHero";
 import MoviesListSection from "../../components/MoviesListSection/MoviesListSection";
 import axios from "axios";
 import { baseUrl } from "../../constants";
+import { useSelector } from "react-redux";
 
 function Movies() {
   const popularMoviesUrl = "movie/popular?language=en-US&page=1";
@@ -14,6 +15,8 @@ function Movies() {
   const [nowPlayings, setNowPlayings] = useState([]);
   const [upcomings, setUpcomings] = useState([]);
   const [topRateds, setTopRateds] = useState([]);
+  const wishlist = useSelector((state) => state.wishlist.value);
+  console.log(wishlist);
 
   useEffect(() => {
     axios

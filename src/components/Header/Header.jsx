@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import siteLogo from "../../assets/images/site-logo.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -16,11 +16,8 @@ function Header() {
   const [showBurger, setShowBurger] = useState(false);
   const { user, isLoaded } = useUser();
   const { signOut } = useClerk();
-  const collection = useSelector((state) => state.collection.value);
   const wishlist = useSelector((state) => state.wishlist.value);
-  useEffect(() => {}, [collection, wishlist]);
-  const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  const storedCollection = JSON.parse(localStorage.getItem("collection")) || [];
+  const collection = useSelector((state) => state.collection.value);
 
   const items = [
     {
@@ -42,39 +39,35 @@ function Header() {
     },
     {
       label: (
-        <Link to="/collections">
-          <div className="flex gap-2 justify-between py-2 items-center">
-            <Flex align="center" gap={10}>
-              <BookmarkOutlineIcon color="#999999" />
-              <p className="text-white">Collections</p>
-            </Flex>
-            <Badge
-              count={storedCollection.length}
-              overflowCount={10}
-              showZero
-              color="#262626"
-            />
-          </div>
-        </Link>
+        <div className="flex gap-2 justify-between py-2 items-center">
+          <Flex align="center" gap={10}>
+            <BookmarkOutlineIcon color="#999999" />
+            <p className="text-white">Collections</p>
+          </Flex>
+          <Badge
+            count={collection.length}
+            overflowCount={10}
+            showZero
+            color="#262626"
+          />
+        </div>
       ),
       key: 1,
     },
     {
       label: (
-        <Link to="/collections">
-          <div className="flex gap-2 justify-between py-2 items-center">
-            <Flex align="center" gap={10}>
-              <WishOutlineIcon color="#999999" />
-              <p className="text-white">Wishlist</p>
-            </Flex>
-            <Badge
-              count={storedWishlist.length}
-              overflowCount={10}
-              showZero
-              color="#262626"
-            />
-          </div>
-        </Link>
+        <div className="flex gap-2 justify-between py-2 items-center">
+          <Flex align="center" gap={10}>
+            <WishOutlineIcon color="#999999" />
+            <p className="text-white">Wishlist</p>
+          </Flex>
+          <Badge
+            count={wishlist.length}
+            overflowCount={10}
+            showZero
+            color="#262626"
+          />
+        </div>
       ),
       key: 2,
     },
@@ -109,12 +102,12 @@ function Header() {
       value: "/movies",
     },
     {
-      label: "Contact Us",
-      value: "/contact",
+      label: "Explore",
+      value: "/explore",
     },
     {
-      label: "Subscriptions",
-      value: "/subscriptions",
+      label: "Contact Us",
+      value: "/contact",
     },
   ];
 
