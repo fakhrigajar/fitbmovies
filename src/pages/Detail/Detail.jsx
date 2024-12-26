@@ -73,7 +73,7 @@ function Detail() {
       />
       <MoviesListSection
         title="Recommendations"
-        link={`/recommendations`}
+        link="recommendations"
         list={recommendations}
       />
     </section>

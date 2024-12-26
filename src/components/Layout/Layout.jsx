@@ -12,11 +12,13 @@ import { setItemToCollection } from "../../features/collection/collectionSlice";
 import { setItemToWishlist } from "../../features/wishlist/wishlistSlice";
 import BottomBar from "../BottomBar/BottomBar";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
+import { setItemToExplore } from "../../features/explore/exploreSlice";
 
 function Layout() {
   const location = useLocation();
   const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
   const storedCollection = JSON.parse(localStorage.getItem("collection"));
+  const storedExplore = JSON.parse(localStorage.getItem("explore"));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +27,9 @@ function Layout() {
     }
     if (storedWishlist) {
       dispatch(setItemToWishlist(storedWishlist));
+    }
+    if (storedExplore) {
+      dispatch(setItemToExplore(storedExplore));
     }
   }, []);
 

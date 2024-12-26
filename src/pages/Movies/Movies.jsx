@@ -57,18 +57,10 @@ function Movies() {
   return (
     <main>
       <MoviesHero />
-      <MoviesListSection
-        list={popularMovies}
-        title="Popular movies"
-        link="/popular-movies"
-      />
-      <MoviesListSection
-        list={nowPlayings}
-        title="Now Playing"
-        link="/now-playing"
-      />
-      <MoviesListSection list={upcomings} title="Upcoming" link="/upcoming" />
-      <MoviesListSection list={topRateds} title="Top Rated" link="/top-rated" />
+      <MoviesListSection list={popularMovies} title="Popular movies" />
+      <MoviesListSection list={nowPlayings} title="Now Playing" />
+      <MoviesListSection list={upcomings} title="Upcoming" />
+      <MoviesListSection list={topRateds} title="Top Rated" />
     </main>
   );
 }

@@ -7,8 +7,12 @@ import LeftLinearIcon from "../../assets/icons/LeftLinearIcon";
 import RightLinearIcon from "../../assets/icons/RightLinearIcon";
 import SkeletonCard from "../../skeletons/SkeletonCard/SkeletonCard";
 import { StyledSection } from "../../assets/styles/styled.components";
+import { useDispatch } from "react-redux";
+import { setItemToExplore } from "../../features/explore/exploreSlice";
 
-function MoviesListSection({ title, list, link }) {
+function MoviesListSection({ title, list }) {
+  const dispatch = useDispatch();
+
   const skeletonSlides = Array.from({ length: 4 }, (_, index) => (
     <SwiperSlide key={`skeleton-${index}`}>
       <SkeletonCard />
@@ -21,7 +25,11 @@ function MoviesListSection({ title, list, link }) {
         <h1 className="sm:text-[30px] desktop:text-[40px] font-bold">
           {title}
         </h1>
-        <Link className="text-xs sm:text-base" to={link}>
+        <Link
+          onClick={() => dispatch(setItemToExplore(list))}
+          className="text-xs sm:text-base"
+          to={`/explore`}
+        >
           Show all
         </Link>
       </div>
@@ -57,7 +65,7 @@ function MoviesListSection({ title, list, link }) {
           {list.length
             ? list.map((listItem, i) => (
                 <SwiperSlide key={i}>
-                  <MovieCard listItem={listItem} link={link} />
+                  <MovieCard listItem={listItem} />
                 </SwiperSlide>
               ))
             : skeletonSlides}

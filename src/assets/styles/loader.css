@@ -1,54 +1,25 @@
-@keyframes pulse {
-  0%,
+/* From Uiverse.io by doniaskima */
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 3rem;
+  background: radial-gradient(circle closest-side, #1a1a1a 94%, #0000)
+    right/calc(200% - 1.7em) 100%;
+  animation: l24 1s infinite alternate linear;
+}
+
+.loader::before {
+  content: "Ooops...";
+  color: #0000;
+  background: inherit;
+  background-image: radial-gradient(circle closest-side, red 94%, #4c4c4c);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes l24 {
   100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
-.red {
-  animation: pulse 1.5s infinite;
-}
-
-.white {
-  animation: pulse 1.5s infinite;
-  animation-delay: 0.75s;
-}
-
-.loader svg {
-  width: 100px;
-  height: 100px;
-  background-size: 12px 12px;
-  aspect-ratio: 1;
-  animation: turn 1s infinite;
-}
-@keyframes turn {
-  0% {
-    transform: rotate(-0.5turn);
-  }
-  100% {
-    transform: rotate(0.5turn);
-  }
-}
-
-.loader-bar {
-  height: 4px;
-  width: 130px;
-  --c: no-repeat linear-gradient(#e30000 0 0);
-  background: var(--c), var(--c), #262626;
-  background-size: 60% 100%;
-  animation: l16 3s infinite;
-}
-@keyframes l16 {
-  0% {
-    background-position: -150% 0, -150% 0;
-  }
-  66% {
-    background-position: 250% 0, -150% 0;
-  }
-  100% {
-    background-position: 250% 0, 250% 0;
+    background-position: left;
   }
 }

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { StyledSection } from "../../assets/styles/styled.components";
 import contactImage from "../../assets/images/hero-image.png";
-import { Button, Checkbox, Flex, Form, Input } from "antd";
+import { Button, Checkbox, Flex, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";

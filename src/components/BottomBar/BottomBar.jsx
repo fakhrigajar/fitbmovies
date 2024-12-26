@@ -4,6 +4,7 @@ import HomeIcon from "../../assets/icons/HomeIcon";
 import TVIcon from "../../assets/icons/TVIcon";
 import WishOutlineIcon from "../../assets/icons/WishOutlineIcon";
 import { Link, useLocation } from "react-router-dom";
+import DiscoveryIcon from "../../assets/icons/DiscoveryIcon";
 
 function BottomBar() {
   const location = useLocation();
@@ -39,14 +40,12 @@ function BottomBar() {
       label: (
         <div className="flex flex-col items-center gap-1">
           <div className="w-7 h-7 flex justify-center items-center">
-            <WishOutlineIcon
-              color={activeNav === "/wishlist" ? "red" : "white"}
-            />
+            <DiscoveryIcon color={activeNav === "/explore" ? "red" : "white"} />
           </div>
-          <div className="text-xs sm:text-base">Wishlist</div>
+          <div className="text-xs sm:text-base">Explore</div>
         </div>
       ),
-      value: "/wishlist",
+      value: "/explore",
     },
     {
       label: (

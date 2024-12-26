@@ -104,6 +104,33 @@ body {
   border-color: #ff4d4f !important;
 }
 
+.ant-pagination-item {
+  background-color: #1f1f1f !important;
+  transition: 0.2s;
+}
+.ant-pagination-item:hover {
+  opacity: 0.7;
+}
+
+.ant-pagination-item a {
+  color: white !important;
+}
+
+.ant-pagination-item-active {
+  border-color: #e30000 !important;
+  background-color: #e30000 !important;
+}
+
+.ant-pagination-item-link {
+  background-color: #e30000 !important;
+  color: white !important;
+}
+
+.ant-pagination-item-ellipsis,
+.ant-pagination-item-link-icon {
+  color: #e30000 !important;
+}
+
 /* CLERK STYLES */
 .cl-rootBox,
 .cl-signIn-root {

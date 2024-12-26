@@ -6,6 +6,7 @@ import Auth from "../pages/Auth/Auth";
 import Detail from "../pages/Detail/Detail";
 import Contact from "../pages/Contact/Contact";
 import Error from "../pages/Error/Error";
+import Explore from "../pages/Explore/Explore";
 
 function Routers() {
   const location = useLocation();
@@ -21,12 +22,9 @@ function Routers() {
       <Route path="/login" element={<Auth />} />
       <Route path="/register" element={<Auth />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/explore" element={<Explore />} />
+      <Route path="/explore/:id" element={<Detail />} />
       <Route path="*" element={<Error />} />
-      <Route path="/popular-movies/:id" element={<Detail />} />
-      <Route path="/top-rated/:id" element={<Detail />} />
-      <Route path="/now-playing/:id" element={<Detail />} />
-      <Route path="/upcoming/:id" element={<Detail />} />
-      <Route path="/recommendations/:id" element={<Detail />} />
     </Routes>
   );
 }
