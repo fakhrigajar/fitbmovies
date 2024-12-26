@@ -9,66 +9,19 @@ import { StyledDarkSurface } from "../../assets/styles/styled.components";
 function Footer() {
   const navigations = [
     {
-      title: "Home",
+      title: "FITBMovies",
       childs: [
         {
-          label: "Categories",
-          value: "/#categories",
+          label: "Movies",
+          value: "/movies",
         },
         {
-          label: "Devices",
-          value: "/#devices",
+          label: "Explore",
+          value: "/explore",
         },
         {
-          label: "Pricing",
-          value: "/#pricing",
-        },
-        {
-          label: "FAQ",
-          value: "/#faq",
-        },
-      ],
-    },
-    {
-      title: "Movies",
-      childs: [
-        {
-          label: "Gernes",
-          value: "/movies#gernes",
-        },
-        {
-          label: "Trending",
-          value: "/movies#trending",
-        },
-        {
-          label: "New Release",
-          value: "/movies#new-release",
-        },
-        {
-          label: "Popular",
-          value: "/movies#popular",
-        },
-      ],
-    },
-    {
-      title: "Support",
-      childs: [
-        {
-          label: "Contact Us",
+          label: "Contact",
           value: "/contact",
-        },
-      ],
-    },
-    {
-      title: "Subscription",
-      childs: [
-        {
-          label: "Plans",
-          value: "/subscription#plans",
-        },
-        {
-          label: "Features",
-          value: "/subscription#features",
         },
       ],
     },
@@ -85,14 +38,14 @@ function Footer() {
   return (
     <footer className="px-5 sm:px-10 pb-[50px] pt-[100px] bg-dark-06 flex flex-col gap-[100px] overflow-hidden">
       <div
-        className="grid gap-[30px]"
+        className="grid sm:flex sm:justify-between gap-[30px]"
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))" }}
       >
         {navigations.map((navigation, i) => (
           <Flex key={i} vertical gap={24}>
             <h1 className="text-xl font-semibold">{navigation.title}</h1>
             {navigation.childs ? (
-              <ul>
+              <ul className="sm:flex gap-3">
                 {navigation.childs.map((navigationChild, i) => (
                   <li key={i} className="text-gray-60 mt-[14px]">
                     <Link

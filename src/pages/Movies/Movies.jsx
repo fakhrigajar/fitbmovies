@@ -16,7 +16,6 @@ function Movies() {
   const [upcomings, setUpcomings] = useState([]);
   const [topRateds, setTopRateds] = useState([]);
   const wishlist = useSelector((state) => state.wishlist.value);
-  console.log(wishlist);
 
   useEffect(() => {
     axios
