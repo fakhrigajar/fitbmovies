@@ -9,6 +9,7 @@ import BookmarkOutlineIcon from "../../assets/icons/BookmarkOutlineIcon";
 import WishOutlineIcon from "../../assets/icons/WishOutlineIcon";
 import LogoutIcon from "../../assets/icons/LogoutIcon";
 import { useSelector } from "react-redux";
+import UserIcon from "../../assets/icons/UserIcon";
 
 function Header() {
   const location = useLocation();
@@ -39,35 +40,52 @@ function Header() {
     },
     {
       label: (
-        <div className="flex gap-2 justify-between py-2 items-center">
-          <Flex align="center" gap={10}>
-            <BookmarkOutlineIcon color="#999999" />
-            <p className="text-white">Collections</p>
-          </Flex>
-          <Badge
-            count={collection.length}
-            overflowCount={10}
-            showZero
-            color="#262626"
-          />
-        </div>
+        <Link to="/profile">
+          <div className="flex gap-2 justify-between py-2 items-center">
+            <Flex align="center" gap={10}>
+              <UserIcon color="#999999" />
+              <p className="text-white">Profile</p>
+            </Flex>
+          </div>
+        </Link>
       ),
       key: 1,
     },
     {
       label: (
-        <div className="flex gap-2 justify-between py-2 items-center">
-          <Flex align="center" gap={10}>
-            <WishOutlineIcon color="#999999" />
-            <p className="text-white">Wishlist</p>
-          </Flex>
-          <Badge
-            count={wishlist.length}
-            overflowCount={10}
-            showZero
-            color="#262626"
-          />
-        </div>
+        <Link to="/collection">
+          <div className="flex gap-2 justify-between py-2 items-center">
+            <Flex align="center" gap={10}>
+              <BookmarkOutlineIcon color="#999999" />
+              <p className="text-white">Collections</p>
+            </Flex>
+            <Badge
+              count={collection.length}
+              overflowCount={10}
+              showZero
+              color="#262626"
+            />
+          </div>
+        </Link>
+      ),
+      key: 1,
+    },
+    {
+      label: (
+        <Link to="wishlist">
+          <div className="flex gap-2 justify-between py-2 items-center">
+            <Flex align="center" gap={10}>
+              <WishOutlineIcon color="#999999" />
+              <p className="text-white">Wishlist</p>
+            </Flex>
+            <Badge
+              count={wishlist.length}
+              overflowCount={10}
+              showZero
+              color="#262626"
+            />
+          </div>
+        </Link>
       ),
       key: 2,
     },

@@ -7,6 +7,9 @@ import Detail from "../pages/Detail/Detail";
 import Contact from "../pages/Contact/Contact";
 import Error from "../pages/Error/Error";
 import Explore from "../pages/Explore/Explore";
+import Profile from "../pages/Profile/Profile";
+import Wishlist from "../pages/Wishlist/Wishlist";
+import Collection from "../pages/Collection/Collection";
 
 function Routers() {
   const location = useLocation();
@@ -22,7 +25,10 @@ function Routers() {
       <Route path="/login" element={<Auth />} />
       <Route path="/register" element={<Auth />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/explore" element={<Explore />} />
+      <Route path="/wishlist" element={<Wishlist />} />
+      <Route path="/collection" element={<Collection />} />
       <Route path="/explore/:id" element={<Detail />} />
       <Route path="*" element={<Error />} />
     </Routes>

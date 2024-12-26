@@ -103,7 +103,6 @@ function Explore() {
       {!loading && exploredList.length === 0 && (
         <div className="flex flex-col gap-2 items-center justify-center w-full min-h-80">
           <Loader />
-          {/* <h1 className="text-7xl">Ooops!</h1> */}
           {searchQuery && (
             <p className="text-lg">
               Sorry, we couldn't find any results for
