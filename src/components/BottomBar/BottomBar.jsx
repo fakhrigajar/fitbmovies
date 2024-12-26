@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import UserIcon from "../../assets/icons/UserIcon";
 import HomeIcon from "../../assets/icons/HomeIcon";
 import TVIcon from "../../assets/icons/TVIcon";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import DiscoveryIcon from "../../assets/icons/DiscoveryIcon";
+import { useUser } from "@clerk/clerk-react";
 
 function BottomBar() {
   const location = useLocation();
   const [activeNav, setActiveNav] = useState(location.pathname);
+  const user = useUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setActiveNav(location.pathname);
@@ -48,7 +51,16 @@ function BottomBar() {
     },
     {
       label: (
-        <div className="flex flex-col items-center gap-1">
+        <div
+          onClick={() => {
+            if (user) {
+              navigate("/profile");
+            } else {
+              navigate("/login");
+            }
+          }}
+          className="flex flex-col items-center gap-1"
+        >
           <div className="w-7 h-7 flex justify-center items-center">
             <UserIcon color={activeNav === "/profile" ? "red" : "white"} />
           </div>
