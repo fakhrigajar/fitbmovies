@@ -5,6 +5,8 @@ import axios from "axios";
 import MoviesListSection from "../../components/MoviesListSection/MoviesListSection";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import { StyledSection } from "../../assets/styles/styled.components";
+import Error from "../Error/Error";
+import toast from "react-hot-toast";
 
 function Detail() {
   const { id } = useParams();
@@ -17,6 +19,7 @@ function Detail() {
   const [casts, setCasts] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const getAllData = () => {
     axios
@@ -27,40 +30,52 @@ function Detail() {
           Accept: "application/json",
         },
       })
-      .then((res) => setDetail(res.data));
-    axios
-      .get(castsUrl, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
-          Accept: "application/json",
-        },
+      .then((res) => {
+        setDetail(res.data);
+        setIsLoaded(true);
       })
-      .then((res) => setCasts(res.data.cast));
-    axios
-      .get(reviewsUrl, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => setReviews(res.data.results));
-    axios
-      .get(recommendationsUrl, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => setRecommendations(res.data.results));
+      .catch((err) => {
+        toast.error(err.response.data.status_message);
+        setIsLoaded(false);
+      });
+    if (isLoaded) {
+      axios
+        .get(castsUrl, {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
+            Accept: "application/json",
+          },
+        })
+        .then((res) => setCasts(res.data.cast));
+      axios
+        .get(reviewsUrl, {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
+            Accept: "application/json",
+          },
+        })
+        .then((res) => setReviews(res.data.results));
+      axios
+        .get(recommendationsUrl, {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTM5MmU4MDk3NzU4NGYzOWIzYWY5ZjZjNWEwZTRhNyIsIm5iZiI6MTcwMTUxNDg4MC42NzI5OTk5LCJzdWIiOiI2NTZiMGU4MDg4MDU1MTAwYzY4MDdjODUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.CnxGT8GHBEJXwg5zZVdMFJXiacJR2DzR8pkeBfLXg5E",
+            Accept: "application/json",
+          },
+        })
+        .then((res) => setRecommendations(res.data.results));
+    }
   };
 
   useEffect(() => {
     getAllData();
-  }, [id]);
+  }, [id, isLoaded]);
 
+  if (isLoaded === false) {
+    return <Error />;
+  }
   return (
     <StyledSection className="!py-5">
       <div className="rounded-xl overflow-hidden px-5">
