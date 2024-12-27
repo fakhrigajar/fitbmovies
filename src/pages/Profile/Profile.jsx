@@ -1,13 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { StyledSection } from "../../assets/styles/styled.components";
 import { Image, Input } from "antd";
-import { useUser } from "@clerk/clerk-react";
+import { useClerk, useUser } from "@clerk/clerk-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FAQ from "../../components/FAQ/FAQ";
+import LogoutIcon from "../../assets/icons/LogoutIcon";
 
 function Profile() {
   const { user } = useUser();
+  const { signOut } = useClerk();
   const createdDateObj = new Date(user?.createdAt);
   const lastSignObj = new Date(user?.createdAt);
   const options = { day: "2-digit", month: "long", year: "numeric" };
@@ -125,6 +127,13 @@ function Profile() {
           ) : (
             ""
           )}
+        </div>
+        <div
+          onClick={() => signOut()}
+          className="flex gap-2 items-center hover:opacity-70 cursor-pointer"
+        >
+          <LogoutIcon color={"white"} />
+          Logout
         </div>
       </StyledSection>
       <FAQ />

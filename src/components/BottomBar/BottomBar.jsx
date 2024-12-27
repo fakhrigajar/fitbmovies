@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserIcon from "../../assets/icons/UserIcon";
 import HomeIcon from "../../assets/icons/HomeIcon";
 import TVIcon from "../../assets/icons/TVIcon";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DiscoveryIcon from "../../assets/icons/DiscoveryIcon";
 import { useUser } from "@clerk/clerk-react";
 
@@ -10,11 +10,11 @@ function BottomBar() {
   const location = useLocation();
   const [activeNav, setActiveNav] = useState(location.pathname);
   const user = useUser();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setActiveNav(location.pathname);
   }, [location]);
+
   const bottomNavigations = [
     {
       label: (
@@ -51,23 +51,20 @@ function BottomBar() {
     },
     {
       label: (
-        <div
-          onClick={() => {
-            if (user) {
-              navigate("/profile");
-            } else {
-              navigate("/login");
-            }
-          }}
-          className="flex flex-col items-center gap-1"
-        >
+        <div className="flex flex-col items-center gap-1">
           <div className="w-7 h-7 flex justify-center items-center">
-            <UserIcon color={activeNav === "/profile" ? "red" : "white"} />
+            <UserIcon
+              color={
+                activeNav === "/profile" || activeNav === "/login"
+                  ? "red"
+                  : "white"
+              }
+            />
           </div>
           <div className="text-xs sm:text-base">Profile</div>
         </div>
       ),
-      value: "/profile",
+      value: user.isSignedIn ? "/profile" : "/login",
     },
   ];
 
