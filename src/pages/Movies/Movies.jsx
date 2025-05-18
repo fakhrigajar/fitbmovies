@@ -59,10 +59,12 @@ function Movies() {
   return (
     <main>
       <MoviesHero />
-      <MoviesListSection list={popularMovies} title="Popular movies" />
-      <MoviesListSection list={nowPlayings} title="Now Playing" />
-      <MoviesListSection list={upcomings} title="Upcoming" />
-      <MoviesListSection list={topRateds} title="Top Rated" />
+      <div className="px-[40px]">
+        <MoviesListSection list={popularMovies} title="Popular movies" />
+        <MoviesListSection list={nowPlayings} title="Now Playing" />
+        <MoviesListSection list={upcomings} title="Upcoming" />
+        <MoviesListSection list={topRateds} title="Top Rated" />
+      </div>
     </main>
   );
 }

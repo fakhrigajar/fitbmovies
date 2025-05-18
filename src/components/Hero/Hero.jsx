@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Hero() {
   return (
-    <section className="relative">
+    <section className="relative" data-aos="fade-up">
       <AnimatedGridImage />
       <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-dark-08"></div>
       <div className="absolute w-full inset-0 bg-gradient-to-b from-black/20 to-black/90 py-10 flex justify-center items-center desktop:items-start"></div>

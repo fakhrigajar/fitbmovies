@@ -14,12 +14,11 @@ function Detail() {
   const castsUrl = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
   const reviewsUrl = `https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US`;
   const recommendationsUrl = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`;
-
   const [detail, setDetail] = useState({});
   const [casts, setCasts] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [checkId, setCheckId] = useState(true);
 
   const getAllData = () => {
     axios
@@ -32,13 +31,13 @@ function Detail() {
       })
       .then((res) => {
         setDetail(res.data);
-        setIsLoaded(true);
+        setCheckId(true);
       })
       .catch((err) => {
         toast.error(err.response.data.status_message);
-        setIsLoaded(false);
+        setCheckId(false);
       });
-    if (isLoaded) {
+    if (checkId) {
       axios
         .get(castsUrl, {
           headers: {
@@ -71,14 +70,14 @@ function Detail() {
 
   useEffect(() => {
     getAllData();
-  }, [id, isLoaded]);
+  }, [id, checkId]);
 
-  if (isLoaded === false) {
+  if (!checkId) {
     return <Error />;
   }
   return (
     <StyledSection className="!py-5">
-      <div className="rounded-xl overflow-hidden px-5">
+      <div className="rounded-xl overflow-hidden">
         <MovieThumbnail movie={detail} />
       </div>
       <MovieDetails
@@ -86,6 +85,7 @@ function Detail() {
         casts={casts}
         reviews={reviews}
         detail={detail}
+        checkId={checkId}
       />
       {recommendations.length > 0 && (
         <MoviesListSection

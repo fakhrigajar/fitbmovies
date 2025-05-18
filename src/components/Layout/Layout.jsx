@@ -3,13 +3,14 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Routers from "../../routes/Routers";
 import { Toaster } from "react-hot-toast";
-import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { setItemToCollection } from "../../features/collection/collectionSlice";
 import { setItemToWishlist } from "../../features/wishlist/wishlistSlice";
 import BottomBar from "../BottomBar/BottomBar";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Layout() {
   const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
@@ -23,6 +24,13 @@ function Layout() {
     if (storedWishlist) {
       dispatch(setItemToWishlist(storedWishlist));
     }
+
+    Aos.init({
+      offset: 200,
+      duration: 300,
+      easing: "ease-in-out",
+      once: true,
+    });
   }, []);
 
   return (

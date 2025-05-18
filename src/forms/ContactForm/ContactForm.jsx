@@ -50,7 +50,7 @@ function ContactForm() {
     <StyledSection className="!py-8">
       <div className="flex flex-col desktop:grid grid-cols-2 gap-10 desktop:gap-20">
         <Flex vertical className="gap-6 sm:gap-[50px]">
-          <Flex vertical gap={14}>
+          <Flex vertical gap={14} data-aos="fade-right">
             <h1 className="desktop:font-bold desktop:text-[38px] sm:font-semibold sm:text-3xl text-2xl">
               Welcome to our support page!
             </h1>
@@ -60,12 +60,14 @@ function ContactForm() {
             </p>
           </Flex>
           <img
+            data-aos="fade-right"
             className="rounded-2xl  overflow-hidden"
             src={contactImage}
             alt="Contact Us Image"
           />
         </Flex>
         <form
+          data-aos="fade-left"
           name="basic"
           autoComplete="off"
           onSubmit={sendMessage}

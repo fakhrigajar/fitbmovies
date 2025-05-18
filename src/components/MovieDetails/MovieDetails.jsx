@@ -44,7 +44,7 @@ function MovieDetails({ casts, reviews, detail }) {
   }, []);
 
   return (
-    <section className="grid desktop:grid-cols-[1fr_400px] gap-5 px-5">
+    <section className="grid desktop:grid-cols-[1fr_400px] gap-5">
       <Flex vertical gap={20}>
         <DarkCard>
           {Object.keys(detail).length !== 0 ? (

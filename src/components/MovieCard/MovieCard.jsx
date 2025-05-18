@@ -130,6 +130,7 @@ function MovieCard({ listItem }) {
         navigate(`/explore/${listItem?.id}`);
       }}
       className="bg-dark-10 rounded-xl border border-dark-15 p-4 flex flex-col gap-4 group relative overflow-hidden"
+      data-aos="zoom-in"
     >
       <div className="relative h-56 sm:h-64 desktop:h-[328px]">
         <img

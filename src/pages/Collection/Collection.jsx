@@ -39,6 +39,7 @@ function Collection() {
           </Button>
         </div>
       )}
+      <FAQ />
     </StyledSection>
   );
 }

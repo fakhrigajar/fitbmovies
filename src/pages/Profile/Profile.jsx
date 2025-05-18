@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyledSection } from "../../assets/styles/styled.components";
 import { Image, Input } from "antd";
 import { useClerk, useUser } from "@clerk/clerk-react";
@@ -20,12 +20,46 @@ function Profile() {
   const formattedLastSign = lastSignObj.toLocaleDateString("en-GB", options);
   const wishlist = useSelector((state) => state.wishlist.value);
   const collection = useSelector((state) => state.collection.value);
+  const [screenSize, setScreenSize] = useState("desktop");
+  useEffect(() => {
+    const updateScreenSize = () => {
+      if (window.innerWidth >= 1024) {
+        setScreenSize("desktop");
+      } else if (window.innerWidth >= 640) {
+        setScreenSize("sm");
+      } else {
+        setScreenSize("");
+      }
+    };
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => {
+      window.removeEventListener("resize", updateScreenSize);
+    };
+  }, []);
+
+  const collectionItems =
+    screenSize === "desktop"
+      ? collection.slice(0, 5)
+      : screenSize === "sm"
+      ? collection.slice(0, 3)
+      : collection.slice(0, 1);
+
+  const wishlistItems =
+    screenSize === "desktop"
+      ? wishlist.slice(0, 5)
+      : screenSize === "sm"
+      ? wishlist.slice(0, 3)
+      : wishlist.slice(0, 1);
 
   return (
     <section>
       <StyledSection className="!py-10 !pb-0">
         <div className="flex flex-col gap-5">
-          <div className="flex justify-center items-center bg-dark-12 rounded-lg p-10 relative sm:min-h-60 mb-10">
+          <div
+            className="flex justify-center items-center bg-dark-12 rounded-lg p-10 relative sm:min-h-60 mb-10"
+            data-aos="fade-up"
+          >
             <div className="flex items-center gap-5 absolute left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-5 -bottom-10">
               <Image
                 className="rounded-full border-4 border-dark-12 desktop:!w-36 !w-24"
@@ -33,7 +67,7 @@ function Profile() {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5" data-aos="fade-up">
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
                 <label>Username:</label>
@@ -71,11 +105,11 @@ function Profile() {
               </div>
             </div>
           </div>
-          {collection.length ? (
-            <div className="flex flex-col gap-2">
+          {wishlist.length ? (
+            <div className="flex flex-col gap-2" data-aos="fade-up">
               <h1>Wishlist</h1>
               <div className="flex gap-2 items-center">
-                {wishlist.map((wishlistItem, i) => (
+                {wishlistItems.map((wishlistItem, i) => (
                   <Link key={i} to={`/explore/${wishlistItem.id}`}>
                     <div className="rounded-lg p-2 bg-dark-15 flex gap-2 items-center">
                       <img
@@ -100,10 +134,10 @@ function Profile() {
             ""
           )}
           {collection.length ? (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2" data-aos="fade-up">
               <h1>Collection</h1>
               <div className="flex gap-2 items-center">
-                {collection.map((collectionItem, i) => (
+                {collectionItems.map((collectionItem, i) => (
                   <Link key={i} to={`/explore/${collectionItem.id}`}>
                     <div className="rounded-lg p-2 bg-dark-15 flex gap-2 items-center">
                       <img

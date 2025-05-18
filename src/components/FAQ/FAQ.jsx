@@ -62,7 +62,7 @@ function FAQ() {
   const rightFAQs = faqs.slice(halfIndex);
 
   return (
-    <StyledSection id="faq">
+    <StyledSection id="faq" data-aos="fade-up">
       <SectionHeader
         title={"Frequently Asked Questions"}
         description={

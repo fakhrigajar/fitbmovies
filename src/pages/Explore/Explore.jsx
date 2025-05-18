@@ -58,7 +58,7 @@ function Explore() {
   }, [searchQuery, pageCount]);
   return (
     <StyledSection className="!py-10">
-      <div className="flex flex-col gap-2 sm:gap-4">
+      <div className="flex flex-col gap-2 sm:gap-4" data-aos="fade-left">
         <h1 className="sm:text-3xl desktop:text-5xl font-bold">
           Discover Your Next Movie!
         </h1>

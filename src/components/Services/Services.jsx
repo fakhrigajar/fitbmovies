@@ -53,7 +53,7 @@ function Services() {
   ];
 
   return (
-    <StyledSection className="!gap-10">
+    <StyledSection className="!gap-10" data-aos="fade-up">
       <SectionHeader
         title={"We Provide you streaming experience across various devices."}
         description={
@@ -65,6 +65,7 @@ function Services() {
           <div
             key={i}
             className="bg-dark-06 border border-dark-15 desktop:p-[50px] p-[30px] rounded-xl flex flex-col sm:gap-[30px] gap-4 relative overflow-hidden duration-300 group hover:scale-[0.97]"
+            data-aos="zoom-in"
           >
             <div
               className="w-[1000px] h-[1000px] absolute left-0 top-0 duration-300 group-hover:-left-32"

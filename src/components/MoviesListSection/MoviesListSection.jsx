@@ -18,12 +18,19 @@ function MoviesListSection({ title, list }) {
   ));
 
   return (
-    <StyledSection className="!py-10">
+    <section className="!py-10 flex flex-col gap-[20px]">
       <div className="flex items-center justify-between">
-        <h1 className="sm:text-[30px] desktop:text-[40px] font-bold">
+        <h1
+          className="sm:text-[30px] desktop:text-[40px] font-bold"
+          data-aos="fade-right"
+        >
           {title}
         </h1>
-        <Link className="text-xs sm:text-base" to={`/explore`}>
+        <Link
+          className="text-xs sm:text-base"
+          to={`/explore`}
+          data-aos="fade-left"
+        >
           Show all
         </Link>
       </div>
@@ -75,7 +82,7 @@ function MoviesListSection({ title, list }) {
           <RightLinearIcon />
         </button>
       </div>
-    </StyledSection>
+    </section>
   );
 }
 
