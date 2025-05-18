@@ -33,7 +33,7 @@ function MoviesHero() {
   }, []);
 
   return (
-    <StyledSection className="!pt-5">
+    <section className="!pt-5 px-5 sm:px-10">
       <div className="relative w-full">
         {popularMovies.length ? (
           <Swiper
@@ -80,7 +80,7 @@ function MoviesHero() {
           <SkeletonThumbnail />
         )}
       </div>
-    </StyledSection>
+    </section>
   );
 }
 

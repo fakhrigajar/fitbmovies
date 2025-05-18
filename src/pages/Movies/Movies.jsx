@@ -59,7 +59,7 @@ function Movies() {
   return (
     <main>
       <MoviesHero />
-      <div className="px-[40px]">
+      <div className="m-5 sm:m-0 sm:px-[40px]">
         <MoviesListSection list={popularMovies} title="Popular movies" />
         <MoviesListSection list={nowPlayings} title="Now Playing" />
         <MoviesListSection list={upcomings} title="Upcoming" />

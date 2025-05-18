@@ -19,7 +19,7 @@ function MoviesListSection({ title, list }) {
 
   return (
     <section className="!py-10 flex flex-col gap-[20px]">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between overflow-hidden">
         <h1
           className="sm:text-[30px] desktop:text-[40px] font-bold"
           data-aos="fade-right"
