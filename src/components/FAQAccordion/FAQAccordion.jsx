@@ -4,12 +4,13 @@ import React from "react";
 function FAQAccordion({ i, activeFAQ, setActiveFAQ, faq, isLast, listLength }) {
   return (
     <div
+      data-aos={`fade-left`}
       style={{
         borderImage:
           "linear-gradient(to right bottom, #E50000 0%, #E50000 17%, rgba(229, 0, 0, 0) 100%)",
         borderImageSlice: 1,
       }}
-      className={`py-[34px] border-b border-transparent flex flex-col h-fit ${
+      className={`py-[34px] border-b border-transparent flex flex-col h-fit overflow-hidden ${
         +faq.id === listLength ? "border-none" : isLast ? "sm:border-none" : ""
       }`}
       onClick={() => {
