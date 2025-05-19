@@ -53,7 +53,7 @@ function Services() {
   ];
 
   return (
-    <StyledSection className="!gap-10" data-aos="fade-up">
+    <StyledSection className="!gap-10 overflow-hidden" data-aos="fade-up">
       <SectionHeader
         title={"We Provide you streaming experience across various devices."}
         description={
